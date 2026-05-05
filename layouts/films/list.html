@@ -1,0 +1,42 @@
+{{- define "main" -}}
+<section class="films-index not-prose">
+  <header class="films-heading">
+    <p class="films-kicker">Selected Work</p>
+    <h1>{{- .Title -}}</h1>
+  </header>
+
+  <div class="films-list">
+    {{- range $index, $film := .Pages.ByWeight -}}
+    <article class="film-row {{ if modBool $index 2 }}film-row-reverse{{ end }}">
+      <a class="film-thumb" href="{{- $film.RelPermalink -}}" aria-label="View {{ $film.Title }}">
+        {{- if or $film.Params.thumbnail $film.Params.thumbnailurl -}}
+        {{- with $film.Params.thumbnail -}}
+        <img src="{{ . }}" alt="{{ $film.Params.thumbnailAlt | default (printf `Thumbnail from %s` $film.Title) }}" />
+        {{- end -}}
+        {{- with $film.Params.thumbnailurl -}}
+        <img src="{{ . }}" alt="{{ $film.Params.thumbnailAlt | default (printf `Thumbnail from %s` $film.Title) }}" />
+        {{- end -}}
+        {{- else -}}
+        {{- if $film.Params.vimeo -}}
+        <img src="https://vumbnail.com/{{ $film.Params.vimeo }}.jpg?v={{ now.Unix }}" alt="{{ $film.Params.thumbnailAlt | default (printf `Thumbnail from %s` $film.Title) }}" />
+        {{- else -}}
+        <div class="film-thumb-placeholder">
+          <span>{{- $film.Title -}}</span>
+        </div>
+        {{- end -}}
+        {{- end -}}
+      </a>
+
+      <div class="film-copy">
+        <p class="film-meta">
+          {{- with $film.Params.year -}}{{ . }}{{- end -}}
+        </p>
+        <h2><a href="{{- $film.RelPermalink -}}">{{- $film.Title -}}</a></h2>
+        {{- with $film.Summary -}}<p>{{ . | plainify }}</p>{{- end -}}
+        <a class="film-play" href="{{- $film.RelPermalink -}}">Play</a>
+      </div>
+    </article>
+    {{- end -}}
+  </div>
+</section>
+{{- end -}}

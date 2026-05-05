@@ -1,0 +1,35 @@
+{{- define "main" -}}
+<article class="film-single not-prose">
+  <header class="film-single-header">
+    <a class="film-back" href="{{- `youtube/` | relURL -}}">YouTube</a>
+    <p class="film-meta">
+      {{- with .Params.year -}}{{ . }}{{- end -}}
+    </p>
+    <h1>{{- .Title -}}</h1>
+    {{- with .Content -}}<div class="film-summary">{{ . }}</div>{{- end -}}
+  </header>
+
+  <div class="film-player">
+    {{- with .Params.youtube -}}
+    {{- $youtubeSrc := printf "https://www.youtube.com/embed/%s" . -}}
+    {{- with $.Params.youtubeStart -}}
+      {{- $youtubeSrc = printf "%s?start=%s" $youtubeSrc . -}}
+    {{- end -}}
+    <iframe
+      src="{{ $youtubeSrc }}"
+      title="{{ $.Title }}"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen
+    ></iframe>
+    {{- else -}}
+    <div class="film-player-placeholder">
+      <span>YouTube link pending</span>
+    </div>
+    {{- end -}}
+  </div>
+
+  {{- with .Params.youtubeUrl -}}
+  <p class="film-source"><a href="{{ . }}" target="_blank" rel="noopener">Open on YouTube</a></p>
+  {{- end -}}
+</article>
+{{- end -}}

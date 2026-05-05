@@ -1,0 +1,17 @@
+baseURL = '/'
+locale = 'en-us'
+title = 'Odysseus G.'
+theme = 'paper'
+
+[params]
+  color = 'linen'
+
+  name = 'Odysseus G.'
+  bio = 'SF high school student interested in technology, film, and business'
+  aboutMe = 'SF high school student interested in technology, film, and business'
+  avatar = '/pp.jpeg'  
+
+  # Social icons in the header — remove any you don't want
+  github = 'gccODYS'
+  linkedin = 'odysseusg'
+  rss = true

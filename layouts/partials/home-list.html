@@ -1,0 +1,76 @@
+<!-- Tag Title -->
+{{- if and .Title (eq .Type "tags") -}}
+<h1 class="mb-14">#{{- .Title -}}</h1>
+{{- end -}}
+
+{{- $pages := union .RegularPages .Sections -}}<!---->
+{{- if .IsHome -}}<!---->
+{{- $pages = where site.RegularPages "Section" "posts" -}}<!---->
+{{- end -}}
+
+{{- if .IsHome -}}<!---->
+{{- $avatar_url := $.Scratch.Get "avatar_url" -}}<!---->
+{{- if or $avatar_url site.Params.name -}}
+<div class="home-profile -mt-2 mb-12 flex items-center">
+  {{- if $avatar_url -}}
+  <div
+    class="home-profile-avatar shrink-0 rounded-full border-[0.5px] border-black/10 bg-white/50 p-3 ltr:mr-7 ltr:-ml-1 rtl:-mr-1 rtl:ml-7 dark:bg-white/90!"
+  >
+    <img
+      class="not-prose my-0 h-full w-full rounded-full bg-black/5! hover:animate-spin dark:bg-black/80!"
+      src="{{- $avatar_url -}}"
+      alt="{{- site.Params.name | default site.Title -}}"
+    />
+  </div>
+  {{- end -}}<!---->
+  {{- if site.Params.name -}}
+  <div>
+    <div class="home-profile-name mt-3 mb-2 font-medium text-black dark:text-white">
+      {{- site.Params.name -}}
+    </div>
+  </div>
+  {{- end -}}
+</div>
+{{- end -}}<!---->
+
+{{- with site.Params.aboutMe -}}
+<section class="home-about not-prose">
+  <h2>About Me</h2>
+  <p>{{- . -}}</p>
+</section>
+{{- end -}}
+
+<section class="home-actions not-prose">
+  <a class="home-action-link home-action-films" href="{{- `films/` | relURL -}}">Films</a>
+  <a class="home-action-link home-action-youtube" href="{{- `youtube/` | relURL -}}">YouTube</a>
+</section>
+{{- end -}}
+
+{{- $paginator := .Paginate $pages -}} {{- range $index, $page :=
+$paginator.Pages -}}<!---->
+
+<section class="relative my-10 first-of-type:mt-0 last-of-type:mb-0">
+  <h2 class="my-0!">{{- .Title -}}</h2>
+  <time class="text-xs antialiased opacity-60"
+    >{{- .Date | time.Format ":date_medium" -}}</time
+  >
+  <a class="absolute inset-0 text-[0px]" href="{{- .Permalink -}}"
+    >{{- .Title -}}</a
+  >
+</section>
+{{- end -}}
+
+{{- if gt $paginator.TotalPages 1 -}}
+<nav class="mt-14 flex">
+  {{- if $paginator.HasPrev -}}
+  <a class="btn not-prose" href="{{- $paginator.Prev.URL -}}"
+    >← {{- i18n "prev_page" -}}</a
+  >
+  {{- end -}}<!---->
+  {{- if $paginator.HasNext -}}
+  <a class="btn not-prose ml-auto" href="{{- $paginator.Next.URL -}}"
+    >{{- i18n "next_page" -}} →</a
+  >
+  {{- end -}}
+</nav>
+{{- end -}}<!---->
