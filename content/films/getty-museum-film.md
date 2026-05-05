@@ -3,7 +3,7 @@ title = "Getty Museum Film"
 date = "2026-05-04"
 draft = true
 weight = 60
-year = "2026"
+year = "2024"
 role = "Film"
 vimeo = "1188908723"
 vimeoUrl = "https://vimeo.com/1188908723?share=copy&fl=sv&fe=ci"
@@ -12,4 +12,4 @@ thumbnailUrl = "https://i.vimeocdn.com/video/2153291362-8c786ebbb99496f4c87891c1
 thumbnailAlt = "Thumbnail from Getty Museum Film"
 +++
 
-A short film.
+Shots from the Getty Museum in Los Angeles.

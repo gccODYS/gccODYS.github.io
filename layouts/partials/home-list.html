@@ -5,7 +5,7 @@
 
 {{- $pages := union .RegularPages .Sections -}}<!---->
 {{- if .IsHome -}}<!---->
-{{- $pages = where site.RegularPages "Section" "posts" -}}<!---->
+{{- $pages = slice -}}<!---->
 {{- end -}}
 
 {{- if .IsHome -}}<!---->
@@ -24,7 +24,7 @@
   </div>
   {{- end -}}<!---->
   {{- if site.Params.name -}}
-  <div>
+  <div class="home-profile-copy">
     <div class="home-profile-name mt-3 mb-2 font-medium text-black dark:text-white">
       {{- site.Params.name -}}
     </div>
@@ -35,10 +35,19 @@
 
 {{- with site.Params.aboutMe -}}
 <section class="home-about not-prose">
-  <h2>About Me</h2>
-  <p>{{- . -}}</p>
+  <p>
+    {{ . }}
+    I'm open to freelance work or paid internships.
+    <a href="mailto:odysseus.gallagher@gmail.com">Please reach out</a>.
+  </p>
 </section>
 {{- end -}}
+
+<div class="home-reel-gap not-prose" aria-hidden="true"></div>
+
+{{- partial "home-reel.html" . -}}
+
+<div class="home-section-gap not-prose" aria-hidden="true"></div>
 
 <section class="home-actions not-prose">
   <a class="home-action-link home-action-films" href="{{- `films/` | relURL -}}">Films</a>

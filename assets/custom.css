@@ -12,16 +12,21 @@
 }
 
 .home-profile {
-  gap: 0;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
+  display: grid !important;
+  grid-template-columns: minmax(9rem, 1fr) minmax(0, auto) minmax(9rem, 1fr);
+  gap: clamp(1.25rem, 3vw, 3rem);
+  align-items: center;
 }
 
 .home-profile-avatar {
   width: clamp(8rem, 18vw, 12rem);
   height: clamp(8rem, 18vw, 12rem);
-  margin: 0 0 1.4rem !important;
+  justify-self: end;
+  margin: 0 !important;
+}
+
+.home-profile-copy {
+  text-align: center;
 }
 
 .home-profile-name {
@@ -29,24 +34,79 @@
   line-height: 0.9;
 }
 
-.home-about {
-  margin: 0 0 3.5rem;
-  max-width: 42rem;
+.home-reel {
+  margin: 0 auto;
+  width: 100%;
 }
 
-.home-about h2 {
-  margin: 0 0 0.65rem;
-  font-size: 0.78rem;
+.home-reel-frame {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  border: 1px solid rgb(0 0 0 / 12%);
+  background: rgb(0 0 0 / 8%);
+}
+
+.home-reel-player {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 500ms ease;
+}
+
+.home-reel-player.is-active {
+  opacity: 1;
+}
+
+.home-reel-shade {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, transparent 58%, rgb(0 0 0 / 42%));
+}
+
+.home-reel-caption {
+  position: absolute;
+  right: 1rem;
+  bottom: 0.85rem;
+  left: 1rem;
+  color: white;
+  font-size: 0.72rem;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  opacity: 0.68;
+}
+
+.home-about {
+  display: block;
+  width: min(88vw, 48rem);
+  max-width: none;
+  margin: 1rem auto 0 !important;
+  text-align: left;
 }
 
 .home-about p {
   margin: 0;
-  font-size: 1.05rem;
-  line-height: 1.7;
+  font-size: clamp(1.35rem, 3vw, 2.35rem);
+  font-weight: 450;
+  line-height: 1.25;
+}
+
+.home-about a {
+  box-shadow: inset 0 -0.12em 0 currentColor;
+  font-weight: 500;
+  padding-bottom: 0.04em;
+  text-decoration: none;
+}
+
+.home-reel-gap {
+  height: clamp(3rem, 6vw, 5rem);
+}
+
+.home-section-gap {
+  height: clamp(3.5rem, 6vw, 5.5rem);
 }
 
 .home-actions a {
@@ -226,6 +286,11 @@ main.main-films {
   --film-border: rgb(255 255 255 / 18%);
 }
 
+.dark .home-reel-frame {
+  border-color: rgb(255 255 255 / 18%);
+  background: rgb(255 255 255 / 8%);
+}
+
 .dark .film-thumb,
 .dark .film-player {
   background: rgb(255 255 255 / 8%);
@@ -241,7 +306,9 @@ main.main-films {
 
 @media (max-width: 760px) {
   .home-profile {
+    display: flex !important;
     flex-direction: column;
+    text-align: center;
   }
 
   .home-profile-avatar {
@@ -253,7 +320,12 @@ main.main-films {
   }
 
   .home-about {
-    margin-top: -1.25rem;
+    margin-top: -1rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .home-reel {
+    margin-bottom: 0;
   }
 
   .home-actions {

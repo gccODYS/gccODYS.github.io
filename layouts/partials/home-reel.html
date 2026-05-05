@@ -1,0 +1,143 @@
+{{- $reel := hugo.Data.home_reel -}}
+{{- if and $reel.enabled $reel.clips -}}
+<section class="home-reel not-prose" data-home-reel data-clip-seconds="{{ $reel.clipSeconds | default 10 }}">
+  <div class="home-reel-frame">
+    <iframe
+      class="home-reel-player is-active"
+      title="Video reel"
+      allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+      allowfullscreen
+    ></iframe>
+    <iframe
+      class="home-reel-player"
+      title="Video reel"
+      allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
+      allowfullscreen
+      aria-hidden="true"
+    ></iframe>
+    <div class="home-reel-shade" aria-hidden="true"></div>
+    <div class="home-reel-caption" data-home-reel-title></div>
+  </div>
+  <script type="application/json" data-home-reel-clips>
+    {{- jsonify $reel.clips | safeJS -}}
+  </script>
+</section>
+
+<script>
+  (() => {
+    const reel = document.querySelector("[data-home-reel]");
+    if (!reel) return;
+
+    const players = Array.from(reel.querySelectorAll(".home-reel-player"));
+    const title = reel.querySelector("[data-home-reel-title]");
+    const clipsNode = reel.querySelector("[data-home-reel-clips]");
+    const clipSeconds = Number(reel.dataset.clipSeconds || 10) * 1000;
+    const preloadLead = 3000;
+    const settleDelay = 900;
+    let clips = [];
+    let index = 0;
+    let activePlayer = 0;
+    let buffered = null;
+    let timer = null;
+    let swapTimer = null;
+
+    try {
+      clips = JSON.parse(clipsNode.textContent);
+    } catch {
+      return;
+    }
+
+    const srcForClip = (clip) => {
+      const start = Number(clip.start || 0);
+      if (clip.provider === "youtube") {
+        const params = new URLSearchParams({
+          autoplay: "1",
+          mute: "1",
+          controls: "0",
+          playsinline: "1",
+          rel: "0",
+          modestbranding: "1",
+          start: String(start),
+        });
+        return `https://www.youtube-nocookie.com/embed/${clip.id}?${params}`;
+      }
+
+      const params = new URLSearchParams({
+        autoplay: "1",
+        muted: "1",
+        background: "1",
+        controls: "0",
+        title: "0",
+        byline: "0",
+        portrait: "0",
+        dnt: "1",
+      });
+      if (clip.hash) params.set("h", clip.hash);
+      return `https://player.vimeo.com/video/${clip.id}?${params}#t=${start}s`;
+    };
+
+    const clearTimers = () => {
+      window.clearTimeout(timer);
+      window.clearTimeout(swapTimer);
+    };
+
+    const showPlayer = (nextPlayer, clip) => {
+      players[activePlayer].classList.remove("is-active");
+      players[nextPlayer].classList.add("is-active");
+      players[nextPlayer].removeAttribute("aria-hidden");
+      players[activePlayer].setAttribute("aria-hidden", "true");
+      title.textContent = clip.title || "";
+
+      const previousPlayer = activePlayer;
+      activePlayer = nextPlayer;
+      index += 1;
+      buffered = null;
+
+      // Stop the old embed after the fade, so it never shows its loading state.
+      window.setTimeout(() => {
+        players[previousPlayer].onload = null;
+        players[previousPlayer].src = "about:blank";
+      }, 700);
+
+      timer = window.setTimeout(preloadNextClip, Math.max(0, clipSeconds - preloadLead));
+    };
+
+    const swapToBuffered = () => {
+      if (!buffered) {
+        swapTimer = window.setTimeout(swapToBuffered, 150);
+        return;
+      }
+      showPlayer(buffered.player, buffered.clip);
+    };
+
+    const preloadNextClip = () => {
+      const clip = clips[index % clips.length];
+      const nextPlayer = activePlayer === 0 ? 1 : 0;
+      const player = players[nextPlayer];
+
+      player.onload = null;
+      player.onload = () => {
+        // Provider iframes fire load before video playback is visually ready.
+        // Give the hidden player a moment to start before it is made visible.
+        buffered = { player: nextPlayer, clip };
+      };
+      player.src = srcForClip(clip);
+      const hasActiveClip = players[activePlayer].getAttribute("src");
+      swapTimer = window.setTimeout(
+        swapToBuffered,
+        hasActiveClip ? preloadLead + settleDelay : settleDelay,
+      );
+    };
+
+    preloadNextClip();
+
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) {
+        clearTimers();
+      } else {
+        preloadNextClip();
+      }
+    });
+  })();
+</script>
+{{- end -}}

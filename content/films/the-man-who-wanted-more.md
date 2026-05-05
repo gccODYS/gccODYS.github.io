@@ -13,4 +13,4 @@ thumbnailUrl = "https://i.vimeocdn.com/video/1913372042-8ba7bd7c94065933692a45ca
 thumbnailAlt = "Thumbnail from The Man Who Wanted More"
 +++
 
-A short film.
+What will a father do when he finds a box with duplicating properties on his doorstep?

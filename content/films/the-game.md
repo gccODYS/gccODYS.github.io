@@ -12,4 +12,4 @@ thumbnailUrl = "https://i.vimeocdn.com/video/2153291714-6b496f8216d517537698acf5
 thumbnailAlt = "Thumbnail from The Game"
 +++
 
-A short film.
+A chess game and a sword fight. Made for high school video production class.

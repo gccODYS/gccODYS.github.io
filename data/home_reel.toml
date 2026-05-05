@@ -1,0 +1,58 @@
+enabled = true
+draft = true
+clipSeconds = 10
+
+[[clips]]
+title = "Rangeview"
+provider = "youtube"
+id = "AKDoofS3uvQ"
+start = 415
+
+[[clips]]
+title = "Longevity"
+provider = "youtube"
+id = "kkg6gPrdZo4"
+start = 54
+
+[[clips]]
+title = "El Segundo"
+provider = "youtube"
+id = "-eJpbImGgp4"
+start = 665
+
+[[clips]]
+title = "Waiting Room"
+provider = "vimeo"
+id = "1179251862"
+start = 7
+
+[[clips]]
+title = "Measure of a Man"
+provider = "vimeo"
+id = "1179252604"
+start = 28
+
+[[clips]]
+title = "The Man Who Wanted More"
+provider = "vimeo"
+id = "996918943"
+hash = "94933854ef"
+start = 16
+
+[[clips]]
+title = "The Game"
+provider = "vimeo"
+id = "1188907795"
+start = 12
+
+[[clips]]
+title = "Person Place Film Exercise"
+provider = "vimeo"
+id = "1188908640"
+start = 8
+
+[[clips]]
+title = "Getty Museum Film"
+provider = "vimeo"
+id = "1188908723"
+start = 10

@@ -11,4 +11,4 @@ thumbnailUrl = "https://img.youtube.com/vi/kkg6gPrdZo4/maxresdefault.jpg"
 thumbnailAlt = "Thumbnail from Longevity"
 +++
 
-A YouTube video.
+Deep dive into longevity science and the longevity industry.

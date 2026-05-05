@@ -3,7 +3,7 @@ title = "Person Place Film Exercise"
 date = "2026-05-04"
 draft = true
 weight = 50
-year = "2026"
+year = "2023"
 role = "Exercise"
 vimeo = "1188908640"
 vimeoUrl = "https://vimeo.com/1188908640?share=copy&fl=sv&fe=ci"
@@ -12,4 +12,4 @@ thumbnailUrl = "https://i.vimeocdn.com/video/2153291596-16b7d34a5411d6743a0048ff
 thumbnailAlt = "Thumbnail from Person Place Film Exercise"
 +++
 
-A short film exercise.
+A short film exercise connecting a person and a place.

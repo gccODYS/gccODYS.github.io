@@ -2,7 +2,7 @@
 title = "El Segundo"
 date = "2026-05-04"
 draft = false
-weight = 10
+weight = 30
 year = "2026"
 youtube = "-eJpbImGgp4"
 youtubeStart = "665"
@@ -12,4 +12,4 @@ thumbnailUrl = "https://img.youtube.com/vi/-eJpbImGgp4/maxresdefault.jpg"
 thumbnailAlt = "Thumbnail from El Segundo"
 +++
 
-A YouTube video.
+Taking a closer look at the hard-tech hub growing in El Segundo.
