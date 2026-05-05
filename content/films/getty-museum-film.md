@@ -1,7 +1,7 @@
 +++
 title = "Getty Museum Film"
 date = "2026-05-04"
-draft = true
+draft = false
 weight = 60
 year = "2024"
 role = "Film"

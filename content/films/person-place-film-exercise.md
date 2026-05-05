@@ -1,7 +1,7 @@
 +++
 title = "Person Place Film Exercise"
 date = "2026-05-04"
-draft = true
+draft = false
 weight = 50
 year = "2023"
 role = "Exercise"

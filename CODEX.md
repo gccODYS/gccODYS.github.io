@@ -50,3 +50,4 @@
 - 2026-05-04: Added homepage `YOUTUBE` action in the center slot of a three-column action row and scaffolded empty `/youtube/` page.
 - 2026-05-04: Copied films-style list/single templates for `/youtube/` and added three YouTube video entries.
 - 2026-05-04: Added draft homepage reel below the profile name, driven by `data/home_reel.toml`, rotating 10-second muted clips from YouTube/Vimeo embeds.
+- 2026-05-04: Published film pages, updated film descriptions/home intro text, and made film index render Markdown body content directly.

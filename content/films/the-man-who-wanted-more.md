@@ -1,7 +1,7 @@
 +++
 title = "The Man Who Wanted More"
 date = "2026-05-04"
-draft = true
+draft = false
 weight = 30
 year = "2024"
 role = "Film"

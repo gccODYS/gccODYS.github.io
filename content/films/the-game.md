@@ -1,7 +1,7 @@
 +++
 title = "The Game"
 date = "2026-05-04"
-draft = true
+draft = false
 weight = 40
 year = "2026"
 role = "Film"

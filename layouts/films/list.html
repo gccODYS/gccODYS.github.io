@@ -32,7 +32,7 @@
           {{- with $film.Params.year -}}{{ . }}{{- end -}}
         </p>
         <h2><a href="{{- $film.RelPermalink -}}">{{- $film.Title -}}</a></h2>
-        {{- with $film.Summary -}}<p>{{ . | plainify }}</p>{{- end -}}
+        {{- with $film.Content -}}<p>{{ . | plainify }}</p>{{- end -}}
         <a class="film-play" href="{{- $film.RelPermalink -}}">Play</a>
       </div>
     </article>

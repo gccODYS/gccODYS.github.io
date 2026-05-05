@@ -8,7 +8,7 @@ theme = 'paper'
 
   name = 'Odysseus G.'
   bio = 'SF high school student interested in technology, film, and business'
-  aboutMe = "Hi! I'm an SF high school student interested in technology, film, and business. This website is where I'll collect all my work, from film and programming to other cool stuff."
+  aboutMe = "Hi! I'm an SF high school student interested in technology, film, and business. This website is where I'll collect all my work, from films and programming projects to other cool stuff."
   avatar = '/pp.jpeg'  
 
   # Social icons in the header — remove any you don't want

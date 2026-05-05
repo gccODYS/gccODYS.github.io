@@ -1,7 +1,7 @@
 +++
 title = "Measure of a Man"
 date = "2026-05-04"
-draft = true
+draft = false
 weight = 20
 year = "2023"
 role = "Film"
