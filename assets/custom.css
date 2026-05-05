@@ -12,16 +12,19 @@
 }
 
 .home-profile {
-  display: grid !important;
-  grid-template-columns: minmax(9rem, 1fr) minmax(0, auto) minmax(9rem, 1fr);
-  gap: clamp(1.25rem, 3vw, 3rem);
+  display: flex !important;
+  width: 100%;
+  gap: clamp(1.5rem, 4vw, 3rem);
   align-items: center;
+  justify-content: center;
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
 }
 
 .home-profile-avatar {
   width: clamp(8rem, 18vw, 12rem);
   height: clamp(8rem, 18vw, 12rem);
-  justify-self: end;
   margin: 0 !important;
 }
 
@@ -30,8 +33,9 @@
 }
 
 .home-profile-name {
-  font-size: clamp(3rem, 10vw, 6.25rem);
+  font-size: clamp(3rem, 7vw, 6.25rem);
   line-height: 0.9;
+  white-space: nowrap;
 }
 
 .home-reel {
@@ -317,6 +321,10 @@ main.main-films {
 
   .home-profile-name {
     margin-top: 0;
+  }
+
+  .home-profile-copy {
+    text-align: center;
   }
 
   .home-about {
