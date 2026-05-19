@@ -1,0 +1,10 @@
+{
+  "scripts": {
+    "build": "HUGO_CACHEDIR=\"$PWD/resources/_gen/hugo_cache\" hugo --gc --minify --baseURL \"${CF_PAGES_URL:-https://odysseusgallagher.com/}\"",
+    "build:cloudflare": "CF_PAGES_URL=https://odysseusgallagher.pages.dev npm run build",
+    "deploy": "npm run build && wrangler pages deploy public --project-name odysseusgallagher --branch main"
+  },
+  "devDependencies": {
+    "wrangler": "^4.92.0"
+  }
+}
